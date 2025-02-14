@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Manager Dashboard</h2>
+
+        <p id="noRequests">No leave requests available.</p>
+
+        <table id="leaveTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Employee</th>
+                    <th>Leave Dates</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+
+    <script>
+        let leaveRequests = []; // Empty array means no leave requests
+
+        // Check if there are leave requests
+        if (leaveRequests.length) {
+            document.getElementById("noRequests").style.display = "none";
+            document.getElementById("leaveTable").style.display = "table";
+
+            document.getElementById("tableBody").innerHTML = leaveRequests.map(request => `
+                <tr>
+                    <td>${request.name}</td>
+                    <td>${request.start_date} - ${request.end_date}</td>
+                    <td>${request.reason}</td>
+                    <td>${request.status}</td>
+                </tr>
+            `).join('');
+        }
+    </script>
+</body>
+</html>
